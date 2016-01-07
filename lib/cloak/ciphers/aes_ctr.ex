@@ -155,8 +155,7 @@ defmodule Cloak.AES.CTR do
   defp get_key_value(key_config) do
     case key_config.key do
       {:system, env_var} ->
-        System.get_env(env_var)
-      
+        Base.decode64!(System.get_env(env_var))
       _ ->
         key_config.key
     end
